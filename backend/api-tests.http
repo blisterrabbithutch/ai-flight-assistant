@@ -1,0 +1,214 @@
+### Flight Assistant AI - API Tests
+### Тестирование всех endpoints для проверки работы системы
+
+### 1. Health Check - проверка работы сервера
+GET http://localhost:3001/health
+
+###
+
+### 2. Проверка списка поддерживаемых аэропортов
+GET http://localhost:3001/api/flights/airports
+
+###
+
+### 3. ОСНОВНОЙ ТЕСТ - Вопрос о рейсах из Германии (arrivals mode)
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": "Сколько рейсов прибыло из Германии?"
+}
+
+###
+
+### 4. Тест - Вопрос о странах с наибольшим количеством вылетов (departures mode)
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "DXB", 
+  "question": "Which countries have the most departing flights?"
+}
+
+###
+
+### 5. Тест - Вопрос об авиакомпаниях из США в Сингапур
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "SIN",
+  "question": "What airlines operate flights from the United States?"
+}
+
+###
+
+### 6. Тест - Вопрос о рейсах в азиатские страны из Парижа
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "CDG",
+  "question": "How many flights go to Asian countries?"
+}
+
+###
+
+### 7. Тест - Вопрос о городах во Франции из Амстердама
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "AMS",
+  "question": "Which cities in France have direct flights?"
+}
+
+###
+
+### 8. Тест - Вопрос о рейсах British Airways из Лондона
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": "Which cities does British Airways fly to from London?"
+}
+
+###
+
+### 9. Тест с указанием даты
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "HKG",
+  "question": "How many flights arrived from mainland China?",
+  "date": "2024-01-15"
+}
+
+###
+
+### 10. Тест на русском языке
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "DXB",
+  "question": "Какие авиакомпании летают в Россию?"
+}
+
+###
+
+### 11. НОВЫЙ ТИП - Вопрос об информации аэропорта
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": "What is the official website of this airport?"
+}
+
+###
+
+### 12. НОВЫЙ ТИП - Вопрос о местоположении аэропорта
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "SIN",
+  "question": "What are the coordinates and elevation of Singapore airport?"
+}
+
+###
+
+### 13. НОВЫЙ ТИП - Вопрос о рейтингах аэропорта
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "DXB",
+  "question": "What is the rating and reviews of this airport?"
+}
+
+###
+
+### 14. НОВЫЙ ТИП - Вопрос о часовом поясе
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "CDG",
+  "question": "What timezone is this airport in?"
+}
+
+###
+
+### 15. ТЕСТ НЕРЕЛЕВАНТНОГО ВОПРОСА - Погода (должен вернуть "can't understand")
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": "What's the weather like today?"
+}
+
+###
+
+### 16. ТЕСТ НЕРЕЛЕВАНТНОГО ВОПРОСА - Кулинария (должен вернуть "can't understand")
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "DXB",
+  "question": "How to cook pasta?"
+}
+
+###
+
+### 17. ТЕСТ НЕРЕЛЕВАНТНОГО ВОПРОСА - Политика (должен вернуть "can't understand")
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "SIN",
+  "question": "Who is the president of Singapore?"
+}
+
+###
+
+### 18. Тест ошибки - неправильный аэропорт
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "INVALID",
+  "question": "Test invalid airport"
+}
+
+###
+
+### 19. Тест ошибки - пустой вопрос
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": ""
+}
+
+###
+
+### 20. Тест ошибки - слишком короткий вопрос
+POST http://localhost:3001/api/flights/query
+Content-Type: application/json
+
+{
+  "airport": "LHR",
+  "question": "Hi"
+}
+
+###
+
+### 21. Health check для flights service
+GET http://localhost:3001/api/flights/health

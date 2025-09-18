@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Assistant AI - Explore Airport Flight Data</title>
+    <meta name="description" content="Analyze flight data and ask questions about airport operations using AI. Explore arrivals and departures for major international airports.">
+    <meta name="keywords" content="flights, airport, AI, assistant, travel, aviation, data analysis">
+    <meta name="author" content="Flight Assistant AI">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Flight Assistant AI">
+    <meta property="og:description" content="Analyze flight data and ask questions about airport operations using AI">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flight-assistant-ai.com">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flight Assistant AI">
+    <meta name="twitter:description" content="Analyze flight data and ask questions about airport operations using AI">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PrimeVue Theme CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primevue@4.3.9/resources/themes/saga-blue/theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primevue@4.3.9/resources/primevue.min.css">
+    
+    <style>
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .app-loaded #loading-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Flight Assistant AI...</div>
+    </div>
+    
+    <div id="app"></div>
+    
+    <script type="module" src="/src/main.js"></script>
+    
+    <script>
+        window.addEventListener('load', () => {
+            document.body.classList.add('app-loaded');
+        });
+        
+        // fallback
+        setTimeout(() => {
+            document.body.classList.add('app-loaded');
+        }, 5000);
+    </script>
+</body>
+</html>

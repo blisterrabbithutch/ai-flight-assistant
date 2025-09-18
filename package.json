@@ -1,0 +1,31 @@
+{
+  "name": "flight-assistant-ai",
+  "version": "1.0.0",
+  "description": "AI-powered flight data analysis tool",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm run build",
+    "setup": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "flight",
+    "ai",
+    "assistant",
+    "vue3",
+    "express",
+    "openrouter",
+    "flightapi"
+  ],
+  "author": "Flight Assistant AI Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
